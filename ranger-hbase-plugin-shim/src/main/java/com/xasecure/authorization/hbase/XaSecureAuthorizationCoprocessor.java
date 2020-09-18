@@ -18,7 +18,10 @@
  */
 package com.xasecure.authorization.hbase;
 
+import com.google.protobuf.RpcCallback;
+import com.google.protobuf.RpcController;
 import org.apache.hadoop.hbase.Coprocessor;
+import org.apache.hadoop.hbase.protobuf.generated.AccessControlProtos;
 import org.apache.hadoop.hbase.protobuf.generated.AccessControlProtos.AccessControlService;
 import org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor;
 /**
@@ -30,4 +33,8 @@ import org.apache.ranger.authorization.hbase.RangerAuthorizationCoprocessor;
  * the "real" coprocessor!  This class, hence, should NEVER be more than an EMPTY shell!
  */
 public final class XaSecureAuthorizationCoprocessor extends RangerAuthorizationCoprocessor implements AccessControlService.Interface, Coprocessor {
+    @Override
+    public void hasPermission(RpcController controller, AccessControlProtos.HasPermissionRequest request, RpcCallback<AccessControlProtos.HasPermissionResponse> done) {
+        LOG.debug("hasPermission(): ");
+    }
 }
